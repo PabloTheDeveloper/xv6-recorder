@@ -1,0 +1,27 @@
+
+Task:
+
+Check that order for getpid and systime work correctly on order match, order mismatch
+	Check that multiple files can be created (lets say three)
+
+
+
+Create Match function, and clear function for clearing the data in the Data Struct
+
+
+
+Check on piazza what happens when there are too many replays in the program
+
+
+Redo IO such that I can read each Syscall, and each field for each syscall, and assign it to my struct. Then update file size limit.
+for write:
+	for each syscall in syscalls:
+		syscall_size = 0;
+		if (syscall == uninitialized)
+			break;
+		
+		syscall_size += sizeof(syscall.syscall)
+		// determine size
+		for each field in syscall:
+
+

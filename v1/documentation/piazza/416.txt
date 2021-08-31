@@ -1,0 +1,33 @@
+416
+	-A. Mouse
+		in sys_fstat there is a file struct that contains a lot of fields inside of it.
+
+		I know we are supposed to print out all of these fields (save them),
+
+		I was just wondering if we need to decompose fields inside of the file struct (like inode and pipe). 
+
+		I assume the answer is yes but just wanted to be sure! 
+
+	-YK
+		What do you mean by decomposing?
+		If that means saving the inode structure from the inode number from stat structure? the answer is no.
+	
+	-A. Mouse
+		For example the file structure has an inode struct "ip",
+		so i am wondering if we need to do the following:
+		
+		if our file struct is "f":
+			do we need to f->ip->arg1
+			f->ip->arg2
+			f->ip->... 
+			
+			for all of the arguments in the ip structure?
+			Or do we just need to that for all the arguments in the file struct f?
+	
+	-Sean Burtner
+		You shouldn't need to worry about the contents of the file struct;
+		just record the file descriptor that was passed in
+	
+	-YK
+		Correct
+

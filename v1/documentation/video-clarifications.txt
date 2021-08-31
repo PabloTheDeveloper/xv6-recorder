@@ -1,0 +1,137 @@
+Record/Replay will ALWAYS be at the start
+NO Multithreading
+Note: Echo is not a good program to test record/replay since it doesn't call any system calls
+
+Todo: set max# of recorded system calls
+- set a max number of recorded system (use 1000 as a max)
+- if there there is more than 1000 syscalls that need to be recorded, print error and exit
+
+Grading Criteria
+- you need to write a file / read a file
+	- You cannot use stdio.h, i need to use sys_open, sys_write, sys_close
+- When doing replay check arguments and their order
+	- will need to check if there are if statements and 
+	- print errors and kill a process if arguments/order does not match
+		- cprintf // proc->kill = 1
+
+Examples:
+	//start test_record.c
+	
+	void main(){
+		record_start("record.txt");
+		int fd = open("file.txt");
+		close(fd); // this will return 0
+		close(fd); // this will return -1 since file has already been closed
+		record_stop();
+	}
+	// end test_record.c
+
+	// file contents of record (doesn't need to be using text. You can store binary of structures)
+	<record.txt>
+	open,INPUT_1,OUTPUT_1
+	close,INPUT_2,OUTPUT_2
+	close,INPUT_3,OUTPUT_3
+
+	// running file contents for various commands
+
+	$ test_record (if file.txt does not exist)
+		<record.txt>
+		open,"file.txt",-1
+		close,3,-1
+		close,3,-1
+	
+	$ test_record (if file.txt exists)
+		<record.txt>
+		open,"file.txt",3
+		close,3,0
+		close,3,-1
+	// end test_record shell cmd
+
+		$ test_replay (assuming prior command was run and same content in test_record.c
+										but replacing first and last line respectively)
+		3
+		0
+		-1
+	// end test_replay shell cmd
+
+	$ test_replay (assuming below content comprises test_replay program
+									and the last run test_record was used for record.txt)
+	void main(){
+		replay_start("record.txt");
+		int fd = open("random"); // the replay should fail and print some errors, and kill the process
+		close(fd); // returns 1
+		close(fd); // returns 0
+		replay_stop();
+	}
+
+Example structure
+
+	They won't require us to handle more than 200 bytes per argument. May need to check if 200 is sufficient.
+	Nothing is said on the number of arguments however. May need to check if you have a right amount of args.
+	Also if the argument is a pointer you will need to get content of what the pointer points to, not the address
+
+	struct syscall_record {
+		int syscall;
+
+		char arg1[200];
+		int szarg1;
+		char arg2[200];
+		int szarg2;
+		...
+	}
+	int cur_record_index;
+
+	struct syscall_record cur_record[1000];
+
+
+FAQ
+	Can I not record syscalls into a file?
+		No. You should store it to a file so that even after you reboot the OS, you can still replay it.
+
+	Can I use C File I/O functions, C++vectors, other libraries?
+		As far as I know, you can't. (his answer in lecture is that if we can configure them into xv6 we can, but its not easy)
+
+		For File I/O, xv6 provides file I/O APIs such as open, write, close.
+			Find xv6 programs to understand how to use them.
+			But those programs will use user mode APIs, which you can't. Corresponding kernel syscalls are:
+				sys_open
+				sys_write
+				sys_close
+			But the thing is, is that the above don't have the right arguments.
+			they get those arguments by argptr, argint, etc
+			Our job will be to get those arguments correctly.
+			We can have our 
+
+	If there existing content in a recording file, should I append?
+		No just overwrite that file
+		You don't need to worry about overwriting previous recording
+	
+	What if I can't do the file I/O, will I get a partial credit?
+		We would lose at least 15% of credit. We would get partial credit for other parts (likely not 100% for those parts either)
+	
+	What will be considered for grading?
+		If it can record and replay a few test applications with kernel file I/O implemented, you will get 100%
+		If you implement all correctly without file I/O, you will get 85%
+		Each missing syscall record/replay implementation: -2%
+		Errors observed during the testing: -2% (per error)
+		Missing error handling (e.g wrong orders of syscalls/arguments during of replaying): -5%
+		Incorrect error handling (e.g wrong orders of syscalls/arguments during of replaying): -3%
+	
+	Do I have to record system calls in a text format?
+		No you don't have to. You can do that in a binary format
+		If you want to do recording in a text format?
+			But xv6 don't have handy functions like "fprintf"
+			And alot of work like creating a scanner
+
+
+
+TODOS:
+* Have to be able to ignore filename, but still store to a file
+* the record start will ALWAYS be at the start
+* the replay start will ALWAYS be at the start
+* if there is more than 1000, print error, and exit
+
+* No multithreading
+
+* If arguments values, and order does not match, print errors and kill the process
+// cprintf/ proc->kill = 1

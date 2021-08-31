@@ -1,0 +1,148 @@
+************************************************************************************************
+NEW
+	remove distinctions of Input vs Outputs. Call them fields instead
+	test functions
+	try for sys_getpid, sys_uptime, sys_read, sys_close, sys_open
+
+
+OLD
+(skip) 5. Determine what are the appropriate inputs and outputs for the functions (even though its a slippery definition)
+
+ 
+Unordered Todos:
+ 
+ . Write some binary format some structures (for the recording process)
+ . Test reading from that format into some structures (for the replaying process)
+ . 
+ . Print some readable format from thatbinary format for those structures (maybe using python) (update: only doable on c programs outside of xv6)
+ .
+ . Maybe do: I can refractor away the ioIdx as a parameter for both Check and Record functions 
+
+
+************************************************************************************************
+Ordered Todos:
+	1.test functions 
+		(
+			convertToStr,
+				testcases:
+					NULL
+					""
+					"\n"
+					
+					"...(at max size)..."
+					"...(exceeds size)..." 
+
+			strsMatch,
+				testcases:
+					"" ""
+					"" "a"
+					"a" ""
+					"...(exceed size)...", ""
+					"", "...(exceed size)..."
+					"" ""
+
+			SetField,
+			validateField,
+		)
+	2.try for sys_getpid, sys_uptime, sys_read, sys_close, sys_open
+
+ 
+Unordered Todos:
+ 
+ . Determine what are the appropriate inputs and outputs for the functions]
+		(even though its a slippery definition)
+ 
+ . Test reading from that format into some structures (for the replaying process)
+ 
+ . Print some readable format from thatbinary format for those structures (maybe using python) (update: only doable on c programs outside of xv6)
+
+*************************************************************************************************
+Todos:
+
+2. review code testing minilibrary I built
+3. review tests written so far
+4. document in a more clear way, the tasks done
+5. commit to github
+
+6. write tests for recordField method, validateField method, constructRecord method (todo: just null generate the record)
+6.5. commit to github / document
+
+7. try on open, read, close, getpid(if issues come up with accessing function, just copy and paste. Likely use same global variable as the tick function)
+		(use a simple program. Do it in a test like fashion)
+
+7.5. commit to github / document
+
+8. find good place to put extra function's code if needed.
+
+9. try same combination of code onto in a more harder way (maybe follow the demo done in class?)
+
+10. commit to github / document
+
+11. finish for all other programs the code instructions + find the extra data structures needed
+
+
+//
+Account for NULL values passed as arguments
+(needed for strings)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Record and Replay.
+
+Records all the syscall inputs and output ()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,21 @@
+In this commit I had declared my structs in "rr.h"
+I had also updated the maxfile size to fit my structs
+
+
+For the structs aspect:
+	I added 1000 records, and 4 fields per each record.
+	Each field could either be an input field or output field
+
+	field are the arguments passed in and the outputs passed out of the system call
+
+	I named it field, as the name arg is more associated with function inputs
+
+	Furthermore, each field holds a value data which can be either of type int or Bytes.
+
+
+For the update to maxfile size:
+	I updated the NDIRECT const value in "fs.h"
+	I updated the BSIZE const value in "fs.h"
+	Those values are what set the filesize.
+	Now, I can use my struct, as it is, without issue.
+	It does take some time to load in.

@@ -1,0 +1,15 @@
+409
+	- A. Mouse
+		It seems that printf makes a call to sys_write for every character it prints to the console.
+		Should this affect our implementation at all?
+
+		If the testing program uses printf while recording,
+		I'm afraid the limit of 100 system calls will quickly be reached.
+
+	- YK 
+		I will not test programs that use printf extensively. So, that should be fine.
+		But technically, it should be supported by simply extending the max # of records.
+		>>(update)
+		Sorry, I need to correct one.
+		In fact, you don't need to log write() because it is a deterministic system call.
+		Others you should replay, but let's remove write() from the target record/replay syscall.		

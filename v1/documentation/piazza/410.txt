@@ -1,0 +1,60 @@
+410
+	- A. Helix
+		When I import any kind of file open, close, or append,
+		I get errors saying they are not valid or other functions are being overridden.
+		Does anyone know how to surpass this issue?
+
+		Another issue is declaring a global string ( char array ) and then appending to it in another file.
+		Anyone know how it should be declared in a .h file and then appended to?
+		Thanks!!
+	
+	- Sean Burtner
+		You can't use stdio in xv6...
+		essentially you need to see how xv6 handles its file I/O and use that to open, write to, and close files.
+
+
+	-YK
+		you need to look at how sys_open, sys_write, sys_close are called.
+		How you can call them in kernel.
+		They are currently supposed to be called through the user library,
+		which you can't directly use in kernel.
+
+		Also, you don't need to appending to a text file. Just overwrite it. I will announce this as well.
+	
+
+	-A. Beaker
+		For this project are we supposed to figure out a way to call those sys_calls from the kernel? 
+
+	-YK
+		Yes
+	
+	-A. Beaker
+		To rephrase this question:
+		should we re-enact what those functions are doing or should we find a way to actually call those system calls?
+
+	-Sean Burtner
+		The former, I believe (@ your rephrased question)
+	
+	-YK
+		You try to run the identical code sys_* as it is called by a user application.
+
+	-A. Comp
+		Calling sys_open in sysproc.c does not seem to work for me, do i need to include the sysfile.c at the top?
+	
+	-YK
+		Of course, you can't simply call sys_open.
+		You need to find a way to call it.
+		That's the project.
+		I can't tell more otherwise its just telling the answer.
+	
+	-A. Comp
+		In the instructor answer,
+		it says that we should look for ways to call sys_open in the kernel and 
+		I found this post
+		(https://stackoverflow.com/questions/55156182/calling-system-calls-from-the-kernel-code)
+		describing multiple methods to do so.
+		
+		I just wanted to check if one of these methods was what you had in mind to make sure that I was going on the right track?
+
+	-YK
+		Yes. The link is for linux, and xv6 is much simpler.

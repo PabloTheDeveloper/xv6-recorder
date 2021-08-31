@@ -1,0 +1,36 @@
+419
+	-Sean Burtner
+		Say we record a program execution that makes three syscalls, A, B, and C.
+		
+		If we then remove syscall C from the program,
+		and then try to replay it,
+		what is the expected behavior?
+		
+		Should an error be thrown since syscall C was recorded, but never replayed?
+		
+		Or is this permissible behavior, since syscalls A and B were not modified?
+	
+	-YK
+		Print errors and exit. This is included in the slides and recording.
+	
+	-Sean Burtner
+		I wasn't sure since the slides/recording said to
+		"Print errors and kill a process if arguments/order does not match".
+		
+		In the case described above,
+		
+		the arguments and order would still match
+		(
+			when replaying,
+			syscall A and B would be found in the correct order,
+			with the correct arguments,
+			i.e. the replay could be successfully carried out.
+			However,
+			the log file would have syscall C still recorded,
+			but the program would never call it since we took it out
+		)
+
+	-YK 
+		I see, so, additional syscalls recorded in the log.
+		You can just ignore the additional syscall in the log,
+		meaning that the replay is considered successful.

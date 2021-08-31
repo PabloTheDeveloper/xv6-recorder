@@ -1,0 +1,153 @@
+408
+	- A. Poet
+		I am curious about how the record and replay should function.
+		
+		When we are recording,
+		do we just need to log the require sys commands into the filename.txt,
+		and track how many commands have been logged so we don't exceed the max?
+
+		And then for replay,
+		do we want to iterate through these commands and re-execute them,
+		or should we just print out the commands themselves,
+		and any output they resulted in.
+
+		For example,
+		if a sys_mkdir is called while we are recording,
+		my understanding is that we should log mkdir 'dir_name' to our recordfile.txt.
+		
+		What happens then for replay?
+		
+		Does it mkdir 'dir_name' again, or
+		does it just print that we executed that command in the recording?
+
+		Any clarification would be appreciated. Thanks
+	
+
+	- Sean Burtner
+		If I understand it correctly,
+		you don't want to replay any of the functionality of the system call
+		
+		(
+			so don't create another 'dir_name' directory when replaying mkdir;
+			with something like sys_open, don't actually try to open the file;
+			with sys_read, don't try to read the file;
+			etc.
+		).
+		
+		All you want to do is return the same value that was returned during the recording.
+		
+		This way,
+		program execution will be the same,
+		but without the system calls actually being carried out.
+
+		If the goal was to replay the system call functionality,
+		it wouldn't make sense because we could just do that by actually calling the system call.
+		Our goal is just to capture the return values to mimic program execution.
+
+		Please correct me if I'm misunderstanding!
+
+	- YK
+
+		I find some possible misunderstanding here.
+		In general your answer is correct, but there are some additional details.
+
+
+
+		-- original question --
+		I am curious about how the record and replay should function.
+		When we are recording,
+		do we just need to log the require sys commands into the filename.txt,
+		and track how many commands have been logged so we don't exceed the max?
+		********* Response ***********
+		Correct
+		******************************
+
+
+
+
+		-- original question --
+		And then for replay,
+		do we want to iterate through these commands and re-execute them,
+		or should we just print out the commands themselves, and any output they resulted in.
+
+		********* Response ***********
+		> You need to let the sys_xxx returns the recorded value.
+		Your code is not re-executing.
+		The sys_xxx will also not execute the original kernel code.
+
+		> One tricky case will be if a syscall returns a pointer of a structure.
+		You need to construct the structure and return all the recorded values as if it is executed.
+
+		> It also means that you need to record all the structure's elements as well.
+		If you have some pointer, you need to get into the structure as well.
+		******************************
+
+
+
+
+		-- original question --
+		For example,
+		if a sys_mkdir is called while we are recording,
+		my understanding is that we should log mkdir 'dir_name' to our recordfile.txt.
+		What happens then for replay?
+		Does it mkdir 'dir_name' again, or does it just print that we executed that command in the recording?
+
+		********* Response ***********
+		> During the recording, yes you do record the arguments.
+		> During the replay,
+		you check whether the arguments are identical to the recorded one,
+		and return the recorded return value.
+		******************************
+
+
+		--- The second answer ---
+		If I understand it correctly,
+		you don't want to replay any of the functionality of the system call
+
+		(so don't create another 'dir_name' directory when replaying mkdir;
+		with something like sys_open, don't actually try to open the file;
+		with sys_read, don't try to read the file; etc.).
+		********* Response ***********
+		Correct
+		******************************
+
+		--- The second answer ---
+		All you want to do is return the same value that was returned during the recording.
+		********* Response ***********
+		Correct
+		******************************
+
+		This way, program execution will be the same,
+		but without the system calls actually being carried out.
+		********* Response ***********
+		If the goal was to replay the system call functionality,
+		it wouldn't make sense because we could just do that by actually calling the system call.
+		Our goal is just to capture the return values to mimic program execution.
+
+		> It will make sense if you are using this recording in a different environment.
+		See the slides, that I removed the file, but the execution can be replayed.
+		>
+		Imagine that you want someone else to debug your buggy execution,
+		which cannot be reproduced on others' computers.
+		This will be handy in such a case.
+		
+		Also, this applies to post mortem cyber forensic analysis.
+
+		Please correct me if I'm misunderstanding!
+
+	- A. Calc
+		All of the system calls simply return an int,
+		though (except for sbrk, which is not required to be implemented).
+		What syscall did you have in mind when referring to the case where
+		"a syscall returns a pointer of a structure"?
+
+	- YK
+		 **return** means not simply a return statement in the function.
+		 It means anything that the system call returns to the user mode app.
+		 See sys_fstat and sys_read
+
+	- A. Calc 
+		I see. So our log file needs to store the actual data read by sys_read?
+
+	- YK
+		Correct. Actual data read by sys_read, and other syscalls

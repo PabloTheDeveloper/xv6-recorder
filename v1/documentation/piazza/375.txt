@@ -1,0 +1,57 @@
+375 (details over replay aspects)
+	A. Mouse -
+		After looking at the write up and watching the video for course project c,
+		I'm still slightly confused as to how the replay capability works.
+		I understand how recording all the syscalls works,
+		but am confused as to what the replay ability is supposed to do with that.
+
+		Is it just supposed to return its logged values for syscalls
+		if they are called again with certain inputs, 
+		or is it supposed to invoke those calls itself.
+
+	YK-
+		You need to first pass a basic functionality test for sure,
+		that at least you should be able to replay a small program with a few syscalls.
+		If you pass, you will get most of your grade (e.g., 75%).
+
+		A very simple test case would be
+		for( i = 0; i < 10; i++ ) {
+		printf("...", time());
+		}
+
+		Also, I will read your code to grade your understanding of the project as well.
+		Understanding the problem itself is also a part of the grade like the exam.
+		You will be submitting a report as well. It will be announced.
+
+
+	A. Helix -
+		One aspect of the project that is not explicitly stated is
+		whether the replayed commands should output the same results as the recorded commands,
+		or if different starting conditions can lead to different outputs.
+
+		Using your example with the time() function,
+		should the replayed commands output the same times as the recorded commands,
+		or should it print the current times?
+
+
+	YK -
+		recorded time.
+		I think this should be clear as it is "record and replay",
+		if it is the current time,
+		it shouldn't be called as a replay.
+
+		Please understand that this is supposed to be an exam.
+		Clearly understanding the question is also part of the project as well.
+		If the concept is difficult to grasp,
+		you may need to read some papers regarding record and replay.
+		As mentioned in the lecture as well, please do not see the course project as another homework.
+		Picking a project that you have a good understanding of is also part of the project.
+		
+		The original description includes the sentence
+			"
+				In this project,
+				your goal is to implement a record and replay system in xv6.
+				
+				A recorder logs all the system calls.
+				A replayer replays the recorded (i.e., logged) values of the system calls.
+			"

@@ -1,0 +1,36 @@
+In this commit, there have been alot of changes.
+
+Added self written testing program in ts.c
+Modified Makefile to allow for it.
+
+
+in ts.c I have 2 test suites, one to check basic IO, one to check getpid with record and replay functionality
+The way it works it written in comments. But essentially, two variables, test_suite and test, determine which
+test_suite and test will be run
+
+
+In rr.h I renamed some of the structs but probably shouldn't be renaming them anymore.
+I added global variables: syscalls, syscall_idx, rr_pid. All of them are documented in the rr.h file in comments
+I added many functions that I imagine I would use very often.
+
+
+In sysproc.c I added an INTERNAL DEVELOPMENT LOG. This logs errors done during development as oppose due to functionality
+This panics to stop what I am doing, and make me correct that silly mistake.
+
+
+Additionally, I added error handling in "addSyscall", "getSyscall" (for out of bounds of the max amount of records allowed).
+What the handling will do is it will kill the process associated with the syscall on error.
+I am using kill(rr_pid) to end the program. I log write before.
+
+
+I also starting only writing what is needed to be written into the recorded file.
+
+I added the getpid syscall where I found a agreeable format for doing record and replay on programs
+
+I also added logging for each syscall in getpid. It is triggered by the PRINTLOG flag.
+
+
+Next steps are:
+writing tests for checking the out of bounds error, and writes.
+fork inside a record and replay session and continue to record only the original syscalls in that process but not the child,
+I am unsure of whether to terminate process for open/read/write/close errors on writing original file, or reading from it

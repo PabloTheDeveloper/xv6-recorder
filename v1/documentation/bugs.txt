@@ -1,0 +1,12 @@
+Error 1:
+	unexpected trap 14 from cpu 0 eip
+
+	Cause: passing a char * into a read buffer argument.
+	I am not sure what causes this bug.
+	
+	Using a buffer of some constant size seems to remedy this.
+	That is my direction for now.
+	
+	See Error 1 on bookmarks for a link to a similar piazza question.
+
+	

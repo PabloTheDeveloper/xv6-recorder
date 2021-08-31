@@ -1,0 +1,29 @@
+420
+	-A. Mouse
+		I am starting on Project C,
+		and was wondering about how to save specific system call arguments into the cur_record structure.
+		
+		The example fields in the slides are all char arrays,
+		but some sys calls have arguments that can't be converted into strings.
+		For example, sys_read has a struct file* argument.
+
+		I am not sure how to save such an argument--
+			do I need to add a new field to the cur_record structure to fit data types like this,
+			or do I need to find a way to convert a file* and it's fields into a manageable set of strings?
+			
+		If this is too specific a question, just let me know. Any help would be appreciated.
+
+		By the way, thank you for the extension!!!
+
+	-A. Calc
+		I don't think sys_read has a struct file* argument;
+		all of its arguments can be serialized pretty easily
+
+	-YK
+		Just write in a binary format. That might be easier.
+
+	-A. Mouse
+		So basically I just need to static cast it to char*?
+		No, you will see if you do cast then it wouldn't work.
+		You need to save their values individually.
+		

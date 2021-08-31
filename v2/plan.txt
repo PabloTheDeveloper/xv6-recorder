@@ -1,0 +1,63 @@
+/////////////////////
+* add rr.h
+	add structs
+	add global variables
+	run (make sure it works)
+
+* file helper methods
+	add my_open, my_close, my_read, my_write functions
+	// do manual check: basic test ensuring that I can open/write/read/close to 0 // big variable can exist
+
+
+* write test framework with tests (RecordGroup constructor): 
+	call record, and then replay in a program
+	call replay (without record)
+
+
+* write first tests (work with only integers and getpid) (write it such that I can apply the following logic to any syscall)
+	// write basisc test ensuring that I can write to 1 syscall // 
+	// build a reset function for syscalls(new name of records)
+
+	// error handle what happens when more replays are asked for, than records allowed
+	// write basic test showing that error happens on prior condition
+
+
+	// write basic tests such that when replay is all used up, remaining record is ignored
+
+	// update original failure in failure (by using exit)
+
+	// rename struct to better variables ...
+		// records 
+	
+	// Add per process aspect to project. (using a global variable and check conditionally all code)
+
+
+	// print records based on logging
+
+--------------------------
+
+
+	// error handle what happens when more than 1000 records are being replayed
+	// error handle what happens when more than 1000 records are being recorded
+
+	// write basic test that shows I can record 1000 syscalls
+	// write basic test that shows I can replay 1000 syscalls
+
+	// write basic test that shows I cannot record more than 1000 syscalls
+	// write basic test that shows I cannot replay more than 1000 syscalls
+
+
+* write tests for getpid
+	// use samples
+
+* write tests for uptime
+	// use samples
+
+
+* write tests for open (add a char buff or str object)
+
+* write tests for close
+
+* write tests for read
+
+

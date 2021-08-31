@@ -1,0 +1,31 @@
+398 
+	- A. Comp
+		Does the project C video provide information that could help us work on it?
+		If it does, could it be released before this weekend?
+		I was asking because that's what I thought the video would do,
+		I wasn't expecting additional requirements to be released in the video.
+
+	-YK
+		There will not be additional requirements. Period.
+		If you have any questions, please just ask.
+
+		What's will be there is that:
+		(1) I will provide a template xv6 that includes 4 system calls.
+		(2) will clarify what was asked in the piazza and emails
+		(if you are looking at here, nothing much you learn more)
+		- like you don't need to worry about concurrency (anyway this mentioned previously as well)
+		- you can assume that we will not test complicated scenarios.
+				you can assume record_start is the first call.
+
+		There's literally nothing more.
+		And also,
+		please understand this is just simply you write a file and read a file.
+		I know you can't use vectors,
+		file i/os,
+		and that's also the point of the homework.
+		I do not plan to provide that code snippet here,
+		and that's something you should figure out.
+		
+		That information will not be *intentionally* included in the announcement.
+
+		All the code that you need is already in the xv6.

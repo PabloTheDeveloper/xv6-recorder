@@ -1,0 +1,8 @@
+
+In this commit I setup the IO for record and replay.
+I used the advice given in the videos, to implement my file helper methods.
+I had to create a helper method to get the fd correctly.
+
+I also turned on PRINTLOG as I will be using that for the majority of the project
+
+I cprinted file status information and handle errors for file related issues for the recorded_filename (open/close/write/read)
