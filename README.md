@@ -13,13 +13,15 @@ It was due on the last day of UVA's finals week.
 ## Restrictions
 Collaboration was not permitted.
 However, we were allowed to ask clarifying questions on our piazza forum.
-Only a few selected systemcalls needed to have record and replay functionality.
+Additionally, only a few selected systemcalls needed to have record and replay functionality.
 
 ### What I Did
 I began by collecting all the restrictions and limitations the project was going to have.
 I collected all the details the professor gave in class, in the assignment, piazza, in discord, etc.
 You can see those details in the v1/documentation and other related files.
 After I learned as much as I could, I began with an outline for an algorithm.
+
+I stored the solution I created in their own seperate directory so it would be easier to access from this github README.
 
 ### High Level Algorithm Overview
 Have a variable to record when a record or replay session is occurring.
@@ -33,10 +35,10 @@ By the end, I had created three seperate functioning versions.
 After completing it the first time, I wanted to see how it could be improved.
 After two more iterations and much testing I found my best version.
 
+
 I ended up with a 100% for the final.
 I was very happy as a result.
 But I was just as much, if not more happy for the effort and thought I put into the last version.
-
 
 ## Highly Relevant Files
 ---
