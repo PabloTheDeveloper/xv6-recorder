@@ -5,7 +5,7 @@ Record and Replay is a powerful feature for debugging.
 The goal in this project was to add record and replay functionality onto the xv6 operating system.
 
 ## Stakes
-This project was my final for my Operating Systems class.
+This project was my final for my Operating Systems class for Fall 2020.
 It accounted for a large majority of my final grade.
 We had three weeks to complete it.
 It was due on the last day of UVA's finals week.
