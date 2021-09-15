@@ -2,7 +2,7 @@
 
 ## Goal
 Record and Replay is a powerful feature for debugging.
-The goal in this project was to add record and replay functionality onto the xv6 operating system.
+The goal of this project was to add record and replay functionality onto the xv6 operating system.
 
 ## Stakes
 This project was my final for my Operating Systems class for Fall 2020.
@@ -21,9 +21,9 @@ I collected all the details the professor gave in class, in the assignment, piaz
 You can see those details in the v1/documentation and other related files.
 After I learned as much as I could, I began with an outline for an algorithm.
 
-I stored the solution I created in their own seperate directory so it would be easier to access from this github README.
+I stored the solution I created in their own separate directory so it would be easier to access from this github README.
 
-### High Level Algorithm Overview
+### High-Level Algorithm Overview
 Have a variable to record when a record or replay session is occurring.
 If it is in record mode, then capture and store inputs and outputs to system calls.
 If it is in replay mode, replay the inputs and outputs for system calls.
@@ -31,9 +31,9 @@ Store both the inputs and outputs in some kind of way where you can retrieve the
 For each system call, add the right arguments and outputs.
 
 ## Result
-By the end, I had created three seperate functioning versions.
+By the end, I had created three separate functioning versions.
 After completing it the first time, I wanted to see how it could be improved.
-After two more iterations and much testing I found my best version.
+After two more iterations and significant testing, I found my best version.
 
 
 I ended up with a 100% for the final.
