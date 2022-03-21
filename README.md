@@ -52,7 +52,7 @@ But I was just as much, if not more happy for the effort and thought I put into 
     * [rr.h](v2/xv6-master/rr.h) has the structures I am using to record/replay the systemcalls and their relevant functions signatures.
     * [sysproc.h](v2/xv6-master/sysproc.c) implements and uses the functions defined in the rr.h
     * [sysfile.c](v2/xv6-master/sysfile.c) uses the functions defined in the rr.h
-    * [ts.c](v2/ts.c) has unit tests for the structures I would create and modify. More tests and more robust than before.
+    * [ts.c](v2/xv6-master/ts.c) has unit tests for the structures I would create and modify. More tests and more robust than before.
 * **v3**
     * [rr.h](v3/rr.h) has the structures I am using to record/replay the systemcalls and their relevant functions signatures.
     * [sysproc.h](v3/sysproc.c) implements and uses the functions defined in the rr.h.
